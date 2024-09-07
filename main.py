@@ -6,7 +6,7 @@ import json
 
 load_dotenv()
 
-app = FastAPI()  # Create a FastAPI instance
+app = FastAPI()
 
 client = ZenRowsClient(os.getenv("ZENROWS_API_KEY"))
 
@@ -19,4 +19,4 @@ async def scrape():
 
 if __name__ == "__main__":
     import uvicorn 
-    uvicorn.run(app, host="0.0.0.0", port=1234, reload=True)
+    uvicorn.run(app, host="0.0.0.0", port=1234)
