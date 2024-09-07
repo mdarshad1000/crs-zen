@@ -13,10 +13,10 @@ app = FastAPI()
 async def scrape():
     url = "https://crsreports.congress.gov/search/results?term=&r=59285836&orderBy=Date&navids=4294966212&pageNumber=5&"
     # Use curl_cffi's requests with impersonation instead of ZenRowsClient
-    response = requests.get(url, impersonate="chrome110")
-    json_response = json.loads(response.text)
-    print(response.status_code)
-    return {"x":json_response}
+    response = requests.get(url, impersonate="chrome124")
+    # json_response = json.loads(response.text)
+    x = response.status_code
+    return {"x":x}
 
 
 if __name__ == "__main__":
