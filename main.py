@@ -16,7 +16,8 @@ async def scrape():
     response = requests.get(url, impersonate="chrome124")
     # json_response = json.loads(response.text)
     x = response.status_code
-    return {"x":x}
+    y = response.headers
+    return {"x":x, "y": y}
 
 
 if __name__ == "__main__":
