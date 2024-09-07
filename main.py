@@ -2,6 +2,8 @@ from fastapi import FastAPI
 import undetected_chromedriver as uc
 from selenium.webdriver.chrome.options import Options
 from bs4 import BeautifulSoup
+from selenium.webdriver.chrome.service import Service
+from webdriver_manager.chrome import ChromeDriverManager
 import json
 from selenium_stealth import stealth
 import uvicorn
@@ -14,15 +16,14 @@ def run_playwright():
     options = Options()
     options.headless = True
     options.add_argument("--window-size=1920,1080")
-    options.add_argument("user-agent=...")  # Rotate user agents
     # Specify the path to the Chrome binary
-    chrome_binary_path = os.path.join(os.getcwd(), 'chrome', 'chrome')
-    options.binary_location = chrome_binary_path
-
-    # Specify the path to the ChromeDriver binary
-    chromedriver_path = os.path.join(os.getcwd(), 'chromedriver')
-    driver = uc.Chrome(executable_path=chromedriver_path, options=options)
+    # chrome_binary_path = os.path.join(os.getcwd(), 'chrome', 'chrome')
+    # options.binary_location = chrome_binary_path
+    # chromedriver_path = os.path.join(os.getcwd(), 'chromedriver')
     
+    driver = uc.Chrome(service=Service(ChromeDriverManager().install()), options=options)
+
+
     stealth(driver,
             languages=["en-US", "en"],
             vendor="Google Inc.",
