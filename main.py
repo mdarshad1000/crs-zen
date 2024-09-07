@@ -5,6 +5,7 @@ from bs4 import BeautifulSoup
 import json
 from selenium_stealth import stealth
 import uvicorn
+import os
 
 app = FastAPI()
 
@@ -14,8 +15,13 @@ def run_playwright():
     options.headless = True
     options.add_argument("--window-size=1920,1080")
     options.add_argument("user-agent=...")  # Rotate user agents
+    # Specify the path to the Chrome binary
+    chrome_binary_path = os.path.join(os.getcwd(), 'chrome', 'chrome')
+    options.binary_location = chrome_binary_path
 
-    driver = uc.Chrome(options=options)
+    # Specify the path to the ChromeDriver binary
+    chromedriver_path = os.path.join(os.getcwd(), 'chromedriver')
+    driver = uc.Chrome(executable_path=chromedriver_path, options=options)
     
     stealth(driver,
             languages=["en-US", "en"],
