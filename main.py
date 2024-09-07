@@ -3,7 +3,7 @@ from fastapi import FastAPI
 from dotenv import load_dotenv
 import os
 import json
-from curl_cffi import requests  # Added import for curl_cffi
+from curl_cffi import requests
 
 load_dotenv()
 
