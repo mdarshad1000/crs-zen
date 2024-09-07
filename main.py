@@ -1,26 +1,46 @@
 from fastapi import FastAPI
-# from zenrows import ZenRowsClient  # Removed ZenRowsClient import
-from dotenv import load_dotenv
-import os
+import undetected_chromedriver as uc
+from selenium.webdriver.chrome.options import Options
+from bs4 import BeautifulSoup
 import json
-from curl_cffi import requests
-
-load_dotenv()
+from selenium_stealth import stealth
+import uvicorn
 
 app = FastAPI()
 
-@app.get("/scrape")
-async def scrape():
-    url = "https://crsreports.congress.gov/search/results?term=&r=59285836&orderBy=Date&navids=4294966212&pageNumber=5&"
-    # Use curl_cffi's requests with impersonation instead of ZenRowsClient
-    response = requests.get(url, impersonate="chrome124")
-    # json_response = json.loads(response.text)
-    x = response.status_code
-    y = response.headers
-    z = response.text
-    return {"x":x, "y": y, "z": str(z)}
 
+def run_playwright():
+    options = Options()
+    options.headless = True
+    options.add_argument("--window-size=1920,1080")
+    options.add_argument("user-agent=...")  # Rotate user agents
+
+    driver = uc.Chrome(options=options)
+    
+    stealth(driver,
+            languages=["en-US", "en"],
+            vendor="Google Inc.",
+            platform="Win32",
+            webgl_vendor="Intel Inc.",
+            renderer="Intel Iris OpenGL Engine",
+            fix_hairline=True,
+            )
+    
+    driver.get("https://crsreports.congress.gov/search/results?term=&r=59285836&orderBy=Date&navids=4294966212&pageNumber=5")
+    pre_content = driver.page_source
+    # Use BeautifulSoup to parse the HTML content
+    soup = BeautifulSoup(pre_content, 'lxml')
+    pre_tag_content = soup.find('pre').text if soup.find('pre') else 'No <pre> tag found'
+    content = json.loads(pre_tag_content)
+
+    driver.quit()
+    return content
+
+
+@app.get("/scrape")
+def scrape():
+    content = run_playwright()
+    return {"content": content}
 
 if __name__ == "__main__":
-    import uvicorn 
-    uvicorn.run(app, host="0.0.0.0", port=1234)
+    uvicorn.run(app, host="0.0.0.0", port=8000)
