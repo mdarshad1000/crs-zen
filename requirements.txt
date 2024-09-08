@@ -3,4 +3,4 @@ beautifulsoup4
 lxml
 uvicorn
 curl-cffi
-hrequests
+hrequests[all]
