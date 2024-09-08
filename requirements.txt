@@ -1,10 +1,6 @@
 fastapi
-selenium-stealth
-undetected-chromedriver
-selenium
 beautifulsoup4
 lxml
 uvicorn
-webdriver-manager
 curl-cffi
 hrequests[all]
