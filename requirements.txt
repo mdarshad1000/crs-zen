@@ -7,3 +7,4 @@ lxml
 uvicorn
 webdriver-manager
 curl-cffi
+hrequests[all]
