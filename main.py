@@ -1,6 +1,6 @@
 from fastapi import FastAPI
-from curl_cffi import requests
-
+import hrequests
+import subprocess
 
 app = FastAPI()
 
@@ -32,11 +32,8 @@ async def fetch_data():
         'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36',
     }
 
-    response = requests.get(
+    response = hrequests.get(
         'https://crsreports.congress.gov/search/results?term=&r=59414168&orderBy=Date&navids=4294966212&pageNumber=3&',
-        cookies=cookies,
-        headers=headers,
-        impersonate='chrome120'
     )
 
     print(response.status_code)
@@ -44,5 +41,6 @@ async def fetch_data():
 
 if __name__ == '__main__':
     import uvicorn 
-    
-    uvicorn.run(app, host="0.0.0.0", port=1234)
+    # python -m hrequests install
+    subprocess.run(["python", "-m", "hrequests", "install"])
+    uvicorn.run(app, host="0.0.0.0", port=1111)
