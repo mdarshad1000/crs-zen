@@ -1,0 +1,17 @@
+{
+  "url": "https://crsreports.congress.gov/search/results?term=&r=55600006&orderBy=Date&navids=4294966212&",
+  "unique_key": "https://crsreports.congress.gov/search/results?navids=4294966212&orderby=date&r=55600006",
+  "method": "GET",
+  "payload": null,
+  "headers": {},
+  "query_params": {},
+  "data": {},
+  "user_data": {},
+  "retry_count": 2,
+  "no_retry": false,
+  "loaded_url": null,
+  "handled_at": null,
+  "id": "HxTcwyrLlaGW72K",
+  "json_": "{\n  \"url\": \"https://crsreports.congress.gov/search/results?term=&r=55600006&orderBy=Date&navids=4294966212&\",\n  \"unique_key\": \"https://crsreports.congress.gov/search/results?navids=4294966212&orderby=date&r=55600006\",\n  \"method\": \"GET\",\n  \"payload\": null,\n  \"headers\": {},\n  \"query_params\": {},\n  \"data\": {},\n  \"user_data\": {\n    \"__crawlee\": {\n      \"state\": \"RequestState.ERROR_HANDLER\"\n    }\n  },\n  \"retry_count\": 2,\n  \"no_retry\": false,\n  \"loaded_url\": null,\n  \"handled_at\": \"2024-09-08 21:21:52.635174+00:00\",\n  \"id\": \"HxTcwyrLlaGW72K\",\n  \"json_\": null,\n  \"order_no\": null\n}",
+  "order_no": null
+}

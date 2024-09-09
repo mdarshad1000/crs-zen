@@ -1,6 +1,5 @@
 fastapi
 beautifulsoup4
-lxml
 uvicorn
 curl-cffi
-hrequests[all]==0.8.2
+zenrows
